@@ -1,4 +1,6 @@
-export const invoices = [
+import type { Invoice } from "../invoice";
+
+export const invoices: Invoice[] = [
   {
     invoice: "INV001",
     paymentStatus: "Paid",
