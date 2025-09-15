@@ -3,7 +3,7 @@ import { CreditCardIcon } from "lucide-react";
 import type { Invoice } from "../invoice";
 
 export const columns: ColumnDef<Invoice>[] = [
-  { accessorKey: "invoice", header: "#" },
+  { accessorKey: "invoice", header: "#", enableResizing: false },
   {
     accessorKey: "paymentStatus",
     header: () => (
