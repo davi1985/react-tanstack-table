@@ -1,11 +1,4 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import {
   flexRender,
@@ -13,6 +6,8 @@ import {
   useReactTable,
   type ColumnDef,
 } from "@tanstack/react-table";
+import { MemoizedTableBody } from "./data-table-body";
+import { useMemo } from "react";
 
 export interface DataTableProps<TData> {
   data: TData[];
@@ -30,8 +25,24 @@ export const DataTable = <TData,>({ columns, data }: DataTableProps<TData>) => {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  const { columnSizing, columnSizingInfo } = table.getState();
+
+  const colSizesVariables = useMemo(
+    () =>
+      table.getFlatHeaders().reduce<Record<string, number>>(
+        (acc, header) => ({
+          ...acc,
+          [`--header-${header.id}-size`]: header.getSize(),
+          [`--col-${header.column.id}-size`]: header.column.getSize(),
+        }),
+        {}
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [columnSizing, columnSizingInfo, table.getFlatHeaders]
+  );
+
   return (
-    <Table>
+    <Table style={colSizesVariables}>
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
@@ -39,7 +50,7 @@ export const DataTable = <TData,>({ columns, data }: DataTableProps<TData>) => {
               <TableHead
                 key={header.id}
                 colSpan={header.colSpan}
-                style={{ width: `${header.getSize()}px` }}
+                style={{ width: `calc(var(--header-${header.id}-size) * 1px)` }}
                 className="relative group"
               >
                 {!header.isPlaceholder &&
@@ -65,20 +76,7 @@ export const DataTable = <TData,>({ columns, data }: DataTableProps<TData>) => {
         ))}
       </TableHeader>
 
-      <TableBody>
-        {table.getRowModel().rows.map((row) => (
-          <TableRow key={row.id}>
-            {row.getAllCells().map((cell) => (
-              <TableCell
-                key={cell.id}
-                style={{ width: `${cell.column.getSize()}px` }}
-              >
-                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-              </TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBody>
+      <MemoizedTableBody table={table} />
     </Table>
   );
 };
