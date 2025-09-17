@@ -2,11 +2,11 @@ import { flexRender, type Table } from "@tanstack/react-table";
 import { TableBody, TableCell, TableRow } from "../ui/table";
 import { memo } from "react";
 
-type Props = {
-  table: Table<any>;
+type Props<T> = {
+  table: Table<T>;
 };
 
-export const DataTableBody = ({ table }: Props) => (
+export const DataTableBody = <T,>({ table }: Props<T>) => (
   <TableBody>
     {table.getRowModel().rows.map((row) => (
       <TableRow key={row.id}>
@@ -25,4 +25,4 @@ export const DataTableBody = ({ table }: Props) => (
   </TableBody>
 );
 
-export const MemoizedTableBody = memo(DataTableBody);
+export const MemoizedTableBody = memo(DataTableBody) as typeof DataTableBody;
