@@ -10,7 +10,7 @@ export const DataTableBody = <T,>({ table }: Props<T>) => (
   <TableBody>
     {table.getRowModel().rows.map((row) => (
       <TableRow key={row.id}>
-        {row.getAllCells().map((cell) => (
+        {row.getVisibleCells().map((cell) => (
           <TableCell
             key={cell.id}
             style={{
@@ -25,4 +25,6 @@ export const DataTableBody = <T,>({ table }: Props<T>) => (
   </TableBody>
 );
 
-export const MemoizedTableBody = memo(DataTableBody) as typeof DataTableBody;
+export const MemoizedDataTableBody = memo(
+  DataTableBody
+) as typeof DataTableBody;
