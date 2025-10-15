@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import {
   getCoreRowModel,
+  getFilteredRowModel,
   useReactTable,
   type ColumnDef,
 } from "@tanstack/react-table";
@@ -26,6 +27,7 @@ export const DataTable = <TData,>({
       size: 100,
     },
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   return (

@@ -19,7 +19,10 @@ export const columns: ColumnDef<Invoice>[] = [
     accessorKey: "invoice",
     header: "#",
     enableResizing: false,
-    enableHiding: false,
+    // enableHiding: false,
+    meta: {
+      nameInFilters: "Order number #",
+    },
   },
   {
     accessorKey: "paymentStatus",
