@@ -26,6 +26,7 @@ export const DataTable = <TData,>({
     defaultColumn: {
       size: 100,
     },
+    globalFilterFn: "equalsString",
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
