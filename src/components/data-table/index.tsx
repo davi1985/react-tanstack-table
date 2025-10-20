@@ -1,10 +1,10 @@
-import type { ReactNode } from "react";
 import {
   getCoreRowModel,
   getFilteredRowModel,
   useReactTable,
   type ColumnDef,
 } from "@tanstack/react-table";
+import { type ReactNode } from "react";
 
 import { DataTableContext } from "./data-table-context";
 

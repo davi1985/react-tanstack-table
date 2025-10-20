@@ -8,10 +8,7 @@ import { invoices } from "./data";
 export const InvoicesTable = () => (
   <DataTable data={invoices} columns={columns}>
     <div className="mb-4 flex items-center gap-4">
-      <DataTableTextFilter
-        placeholder="Search..."
-        //column="invoice"
-      />
+      <DataTableTextFilter placeholder="Search..." column="invoice" />
       <DataTableColumnsVisibilityDropDown />
     </div>
 
