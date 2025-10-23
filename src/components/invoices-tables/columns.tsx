@@ -13,12 +13,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { DataTableColumnHeader } from "../data-table/data-table-column-header";
 
 export const columns: ColumnDef<Invoice>[] = [
   {
     accessorKey: "invoice",
-    header: "#",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={"#"} />
+    ),
     enableResizing: false,
+    enableSorting: false,
     meta: {
       nameInFilters: "Order number #",
     },
@@ -28,22 +32,31 @@ export const columns: ColumnDef<Invoice>[] = [
     meta: {
       nameInFilters: "Payment Status",
     },
-    header: () => (
-      <div className="flex items-center gap-2">
-        <CreditCardIcon className="size-4" /> Payment Status
-      </div>
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title={
+          <div className="flex items-center gap-2">
+            <CreditCardIcon className="size-4" /> Payment Status
+          </div>
+        }
+      />
     ),
   },
   {
     accessorKey: "paymentMethod",
-    header: "Payment Method",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={"Payment Method"} />
+    ),
     meta: {
       nameInFilters: "Payment Method",
     },
   },
   {
     accessorKey: "totalAmount",
-    header: "Amount",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title={"Total Amount"} />
+    ),
     meta: {
       nameInFilters: "Amount",
     },
