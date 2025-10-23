@@ -13,7 +13,7 @@ export const InvoicesTable = () => (
     columns={columns}
     pagination={{
       pageIndex: 0,
-      pageSize: 2,
+      pageSize: 10,
     }}
     onSelectRow={(selectedRows) => console.log({ selectedRows })}
   >
