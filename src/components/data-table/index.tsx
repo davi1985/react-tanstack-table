@@ -1,5 +1,7 @@
 import {
   getCoreRowModel,
+  getFacetedMinMaxValues,
+  getFacetedUniqueValues,
   getFilteredRowModel,
   useReactTable,
   type ColumnDef,
@@ -29,6 +31,8 @@ export const DataTable = <TData,>({
     globalFilterFn: "equalsString",
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+    getFacetedMinMaxValues: getFacetedMinMaxValues(),
   });
 
   return (
