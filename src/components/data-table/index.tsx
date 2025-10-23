@@ -3,9 +3,11 @@ import {
   getFacetedMinMaxValues,
   getFacetedUniqueValues,
   getFilteredRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
   type ColumnDef,
+  type PaginationState,
 } from "@tanstack/react-table";
 import { type ReactNode } from "react";
 
@@ -15,12 +17,14 @@ export interface DataTableProps<TData> {
   data: TData[];
   columns: ColumnDef<TData>[];
   children: ReactNode;
+  pagination?: PaginationState;
 }
 
 export const DataTable = <TData,>({
   columns,
   data,
   children,
+  pagination,
 }: DataTableProps<TData>) => {
   const table = useReactTable({
     data,
@@ -29,12 +33,16 @@ export const DataTable = <TData,>({
     defaultColumn: {
       size: 100,
     },
+    initialState: {
+      pagination,
+    },
     globalFilterFn: "equalsString",
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
     getSortedRowModel: getSortedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   return (
