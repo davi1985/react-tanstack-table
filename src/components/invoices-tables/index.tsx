@@ -15,6 +15,7 @@ export const InvoicesTable = () => (
       pageIndex: 0,
       pageSize: 2,
     }}
+    onSelectRow={(selectedRows) => console.log({ selectedRows })}
   >
     <div className="mb-4 flex items-center gap-4">
       <DataTableTextFilter placeholder="Search..." column="invoice" />

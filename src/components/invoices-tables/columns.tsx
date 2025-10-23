@@ -14,8 +14,37 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { DataTableColumnHeader } from "../data-table/data-table-column-header";
+import { Checkbox } from "../ui/checkbox";
 
 export const columns: ColumnDef<Invoice>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        className="mt-px"
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={() => table.toggleAllRowsSelected()}
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        className="mt-px"
+        onCheckedChange={row.getToggleSelectedHandler()}
+        disabled={!row.getCanSelect()}
+      />
+    ),
+    size: 80,
+    enableColumnFilter: false,
+    enableGlobalFilter: false,
+    enableHiding: false,
+    enableResizing: false,
+    enableSorting: false,
+    enableMultiSort: false,
+  },
   {
     accessorKey: "invoice",
     header: ({ column }) => (

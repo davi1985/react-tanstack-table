@@ -5,10 +5,15 @@ import { useDataTable } from "./data-table-context";
 
 export const DataTableBody = () => {
   const { table } = useDataTable();
+
   return (
     <TableBody>
       {table.getRowModel().rows.map((row) => (
-        <TableRow key={row.id}>
+        <TableRow
+          key={row.id}
+          data-state={row.getIsSelected() && "selected"}
+          onClick={row.getToggleSelectedHandler()}
+        >
           {row.getVisibleCells().map((cell) => (
             <TableCell
               key={cell.id}
