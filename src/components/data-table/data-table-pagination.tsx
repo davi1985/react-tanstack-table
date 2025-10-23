@@ -15,6 +15,29 @@ import {
   SelectValue,
 } from "../ui/select";
 
+/**
+ * Pagination controls for the data table
+ * 
+ * Features:
+ * - Page size selector (rows per page)
+ * - Current page indicator
+ * - Navigation buttons:
+ *   - First page
+ *   - Previous page
+ *   - Next page
+ *   - Last page
+ * - Disables prev/next buttons when at boundaries
+ * 
+ * @returns Pagination controls component
+ * 
+ * @example
+ * ```tsx
+ * <DataTable data={data} columns={columns}>
+ *   <DataTableContent />
+ *   <DataTablePagination />
+ * </DataTable>
+ * ```
+ */
 export const DataTablePagination = () => {
   const { table } = useDataTable();
 

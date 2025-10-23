@@ -3,6 +3,17 @@ import { flexRender } from "@tanstack/react-table";
 import { TableHead, TableHeader, TableRow } from "../ui/table";
 import { useDataTable } from "./data-table-context";
 
+/**
+ * Renders the table header with column headers and resize handles
+ * 
+ * Features:
+ * - Renders column headers using flexRender
+ * - Provides visual resize handles for resizable columns
+ * - Supports column spanning
+ * - Shows hover effects on resize handles
+ * 
+ * @returns The table header element
+ */
 export const DataTableHeader = () => {
   const { table } = useDataTable();
 

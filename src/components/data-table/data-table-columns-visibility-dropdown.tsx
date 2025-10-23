@@ -8,6 +8,25 @@ import {
 } from "../ui/dropdown-menu";
 import { useDataTable } from "./data-table-context";
 
+/**
+ * Dropdown menu for toggling column visibility
+ * 
+ * Features:
+ * - Lists all columns that can be hidden
+ * - Shows checkbox for each column's visibility state
+ * - Uses column metadata (`nameInFilters`) for display names
+ * - Automatically filters out columns that cannot be hidden
+ * 
+ * @returns Dropdown button with column visibility toggles
+ * 
+ * @example
+ * ```tsx
+ * <DataTable data={data} columns={columns}>
+ *   <DataTableColumnsVisibilityDropDown />
+ *   <DataTableContent />
+ * </DataTable>
+ * ```
+ */
 export const DataTableColumnsVisibilityDropDown = () => {
   const { table } = useDataTable();
 

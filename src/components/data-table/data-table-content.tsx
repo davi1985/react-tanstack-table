@@ -5,6 +5,21 @@ import { DataTableBody, MemoizedDataTableBody } from "./data-table-body";
 import { useDataTable } from "./data-table-context";
 import { DataTableHeader } from "./data-table-header";
 
+/**
+ * Renders the main table content including header and body
+ * 
+ * Manages column sizing CSS variables and optimizes rendering during column resize
+ * by using a memoized body component when resizing is in progress.
+ * 
+ * @returns The table element with header and body
+ * 
+ * @example
+ * ```tsx
+ * <DataTable data={data} columns={columns}>
+ *   <DataTableContent />
+ * </DataTable>
+ * ```
+ */
 export const DataTableContent = () => {
   const { table } = useDataTable();
   const { columnSizing, columnSizingInfo } = table.getState();

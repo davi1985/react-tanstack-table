@@ -13,14 +13,47 @@ import { useEffect, useMemo, useRef, type ReactNode } from "react";
 
 import { DataTableContext } from "./data-table-context";
 
+/**
+ * Props for the DataTable component
+ * @template TData - The type of data in the table rows
+ */
 export interface DataTableProps<TData> {
+  /** Array of data to be displayed in the table */
   data: TData[];
+  /** Column definitions for the table */
   columns: ColumnDef<TData>[];
+  /** Child components to be rendered (filters, content, pagination, etc.) */
   children: ReactNode;
+  /** Initial pagination state */
   pagination?: PaginationState;
+  /** Callback fired when row selection changes */
   onSelectRow?: (selectedRows: TData[]) => void;
 }
 
+/**
+ * Generic DataTable component built on TanStack Table
+ * 
+ * Provides a flexible, headless table implementation with support for:
+ * - Row selection
+ * - Sorting
+ * - Filtering (text and faceted)
+ * - Pagination
+ * - Column visibility
+ * - Column resizing
+ * 
+ * @template TData - The type of data in the table rows
+ * @param props - DataTable props
+ * @returns A context provider wrapping the table instance
+ * 
+ * @example
+ * ```tsx
+ * <DataTable data={users} columns={userColumns}>
+ *   <DataTableTextFilter column="name" />
+ *   <DataTableContent />
+ *   <DataTablePagination />
+ * </DataTable>
+ * ```
+ */
 export const DataTable = <TData,>({
   columns,
   data,
