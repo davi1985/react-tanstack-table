@@ -156,3 +156,7 @@ This project was developed as a study of TanStack Table v8 capabilities, explori
 - Table state management
 - Advanced features implementation (filters, sorting, pagination)
 - Modern React patterns with TypeScript
+
+## License
+
+This project is under the [MIT license](./LICENSE).
